@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王佳鑫的小站</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <div class="profile">
+            <img src="files/photo_head.jpg" alt="头像" class="profile-pic">
+            <span class="profile-name">王佳鑫</span>
+        </div>
+        <ul>
+            <li><a href="index.html">首页</a></li>
+            <li><a href="about.html">关于</a></li>
+            <li><a href="projects.html">项目</a></li>
+            <li><a href="contact.html">联系</a></li>
+        </ul>
+        <button id="theme-toggle">
+            <i class="fas fa-sun"></i>
+            <i class="fas fa-moon"></i>
+            切换主题
+        </button>
+    </nav>
+
+    <main>
+        <header>
+            <h1>项目</h1>
+        </header>
+        
+        <div class="card">
+            <h2>哈迷根据地</h2>
+            <p>这是我人生中第一个完整的项目，是一个哈利波特知识词典，使用Python编写。荣欣地，本作品获得了许多极客的喜爱，可是由于学业，我不得不将其停止更新，目前已经无法访问。</p>
+        </div>
+        
+        <div class="card">
+            <h2>过年模拟器</h2>
+            <p>同样，这也是一个Python项目，内容为模拟过年时应对亲戚们的问题。可惜本作品没有图形化界面，且关卡较少，收获的点赞不多，故停止了更新。</p>
+        </div>
+        
+        <div class="card">
+            <h2>我的小站</h2>
+            <p>这是我目前正在维护的项目，是一个个人网站，使用HTML、CSS、JavaScript编写。目前已经维护到4.0版本。</p>
+            <p>此项目前身为“我的个人主页”，由于个人技术的提高，我将此项目重构，于是便诞生了“我的小站”。</p>
+            <p>在此，我非常感谢我的同学、朋友以及老师的支持，更要感谢屏幕前您的访问！</p>
+        </div>
+    </main>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+
+        function setTheme(theme) {
+            document.body.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                setTheme('light');
+            } else {
+                setTheme('dark');
+            }
+            
+            themeToggle.classList.add('theme-toggle-animation');
+            setTimeout(() => {
+                themeToggle.classList.remove('theme-toggle-animation');
+            }, 300);
+        });
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            setTheme(savedTheme);
+        } else if (prefersDarkScheme.matches) {
+            setTheme('dark');
+        } else {
+            setTheme('light');
+        }
+    </script>
+</body>
+</html>
